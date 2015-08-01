@@ -25,6 +25,7 @@
 
   <%= opal_tag do %>
     Document.ready? do
+      puts "Current User: <%= @current_user %>"
       puts "Inline OPAL is working!"
       Element.find("#element1").text("Inline OPAL is working!")
     end
@@ -39,17 +40,21 @@
   </script>
 
 <h1>Opal as separate partial 2 with ERB locals: (opal_partial2.coffee / opal_partial2.opal)</h1>
-<p>Notice: all view are processed with ERB</p>
+<p>Notice: all views are processed with ERB</p>
 
   <div id="element3-coffee">From a .coffee partial, with ERB `locals`, is NOT working!</div>
   <div id="element3-opal">From a .opal partial, with ERB `locals`, is NOT working!</div>
+  <div id="element3-opal-workaround">Workaround: From a .erb partial(with inline opal), with ERB `locals`, is NOT working!</div>
 
   <script>
-      <%= raw render :partial => "opal_partial2", formats: [:js], handlers: [:coffee],
-                                 locals: {localvar: "LOCAL VAR 111 - coffee"} %>
-      <%= raw render :partial => "opal_partial2", formats: [:js], handlers: [:opal],
-                                 locals: {localvar: "LOCAL VAR 111 - opal"} %>
+    <%= raw render :partial => "opal_partial2c", formats: [:js],
+                               locals: {localvar: "LOCAL VAR - coffee"} %>
+    <%= raw render :partial => "opal_partial2o", formats: [:js],
+                               locals: {localvar: "LOCAL VAR - opal"} %>
+    // the locals are not working (opal_partial2o.opal is not processed by ERB)
   </script>
+
+  <%= render :partial => "opal_partial2o_wa", locals: {localvar: "LOCAL VAR - inline_opal"} %>
 
 
 
