@@ -16,7 +16,10 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use opal as the JavaScript library
-gem 'opal-rails', '~> 0.7.0'
+gem 'opal-rails', '~> 0.8.0'
+
+gem 'haml-rails'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
