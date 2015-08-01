@@ -1,7 +1,57 @@
-<h1>Testing Opal</h1>
-<p>More:
-  <a href="#">https://github.com/opal/opal-rails</a>
-</p>
-<h1 id="elem1">This elem should be replaced by OPAL (script from assets)</h1>
-<a id="click-event" href="#"> CLICK EVENT </a>
+<h1>Testing Opal and Opal-Jquery</h1>
+
+  <p>More:
+    <br/>
+    <%= link_to "OPAL", "https://github.com/opal/opal" %>
+    <br/>
+    <%= link_to "OPAL RAILS", "https://github.com/opal/opal-rails" %>
+  </p>
+
+<h1>Opal in the Assets:</h1>
+
+  <h4 id="elem1">This element should be replaced by OPAL (the greeter.js.rb script from assets)</h4>
+
+  <a id="click-event" href="#"> CLICK EVENT </a>
+
+<br/>
+<br/>
+
+<h1>Opal as remote script:</h1>
+
+  <%= link_to "EXECUTE REMOTE OPAL(JS) through AJAX. (execute: /app/views/home/index.js.opal)", root_path, remote: true %>
+
+<h1>Opal as inline script:</h1>
+  <div id="element1">Inline OPAL is NOT working!</div>
+
+  <%= opal_tag do %>
+    Document.ready? do
+      puts "Inline OPAL is working!"
+      Element.find("#element1").text("Inline OPAL is working!")
+    end
+  <% end %>
+
+
+<h1>Opal as separate partial 1: (opal_partial1.opal)</h1>
+
+  <div id="element2">OPAL from a .opal partial is NOT working!</div>
+  <script>
+    <%= raw render :partial => "opal_partial1", formats: [:js] %>
+  </script>
+
+<h1>Opal as separate partial 2 with ERB locals: (opal_partial2.coffee / opal_partial2.opal)</h1>
+<p>Notice: all view are processed with ERB</p>
+
+  <div id="element3-coffee">From a .coffee partial, with ERB `locals`, is NOT working!</div>
+  <div id="element3-opal">From a .opal partial, with ERB `locals`, is NOT working!</div>
+
+  <script>
+      <%= raw render :partial => "opal_partial2", formats: [:js], handlers: [:coffee],
+                                 locals: {localvar: "LOCAL VAR 111 - coffee"} %>
+      <%= raw render :partial => "opal_partial2", formats: [:js], handlers: [:opal],
+                                 locals: {localvar: "LOCAL VAR 111 - opal"} %>
+  </script>
+
+
+
+
 
