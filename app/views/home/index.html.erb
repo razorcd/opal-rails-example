@@ -45,17 +45,13 @@
   <div id="element3-opal">From a .opal partial, with ERB `locals`, is NOT working!</div>
   <div id="element3-opal-haml">From a .opal partial, with HAML `locals`, is NOT working!</div>
   <br/>
-  <div id="element3-opal-workaround">Workaround: From a .erb partial(with inline opal), with ERB `locals`, is NOT working!</div>
 
   <script>
     <%= raw render :partial => "opal_partial2c", formats: [:js],
                                locals: {localvar: "LOCAL VAR - coffee"} %>
     <%= raw render :partial => "opal_partial2o.opal", formats: [:js],  handlers: [:erb],
-                               locals: {localvar: "LOCAL VAR - opal"} %>
-    // the locals are not working (opal_partial2o.opal is not processed by ERB)
-
+                               locals: {localvar: "LOCAL VAR - opal_erb"} %>
     <%= raw render :partial => "opal_partial2oh.opal", formats: [:js], handlers: [:haml],
                                locals: {localvar: "LOCAL VAR - opal_haml"} %>
   </script>
 
-  <%= render :partial => "opal_partial2o_wa", locals: {localvar: "LOCAL VAR - inline_opal"} %>
