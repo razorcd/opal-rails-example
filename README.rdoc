@@ -1,5 +1,0 @@
-Opal Rails Example
-
-This is a Rails demo app that uses Opal as a javascript compiler.
-
-Opal: https://github.com/opal/opal
